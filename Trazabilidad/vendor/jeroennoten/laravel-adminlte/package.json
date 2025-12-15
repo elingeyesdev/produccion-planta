@@ -1,0 +1,23 @@
+{
+    "name": "laravel-adminlte-docs",
+    "description": "Documentation site for the Laravel-AdminLTE package (built with VitePress)",
+    "version": "1.0.0",
+    "private": true,
+    "directories": {
+        "doc": "docs"
+    },
+    "scripts": {
+        "docs:dev": "vitepress dev docs",
+        "docs:build": "vitepress build docs",
+        "docs:preview": "vitepress preview docs"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/jeroennoten/Laravel-AdminLTE.git"
+    },
+    "author": "Jeroen Noten <jeroennoten@me.com>",
+    "license": "MIT",
+    "devDependencies": {
+        "vitepress": "^1.6.0"
+    }
+}

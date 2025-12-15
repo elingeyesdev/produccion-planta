@@ -1,0 +1,111 @@
+{
+    "email": "cliente@example.com",
+    "nombre_usuario": "Juan",
+    "apellido_usuario": "Pérez",
+    "telefono_usuario": "+591 70000000",
+    "nit": "123456789",
+    "direccion_cliente": "Av. Principal 123, Santa Cruz, Bolivia",
+    "nombre": "Pedido Completo - Enero 2025",
+    "fecha_entrega": "2025-02-15",
+    "descripcion": "Descripción completa del pedido con todos los detalles necesarios",
+    "observaciones": "Observaciones adicionales del pedido. Este es un pedido de prueba con todos los campos completos.",
+    "editable_hasta": "2025-12-31 23:59:59",
+    "products": [
+        {
+            "producto_id": 1,
+            "cantidad": 100.50,
+            "observaciones": "Producto con especificaciones especiales. Requiere manejo cuidadoso."
+        },
+        {
+            "producto_id": 2,
+            "cantidad": 50.25,
+            "observaciones": null
+        },
+        {
+            "producto_id": 3,
+            "cantidad": 75.75,
+            "observaciones": "Producto frágil, embalaje especial"
+        }
+    ],
+    "destinations": [
+        {
+            "direccion": "Av. Ejemplo 123, Santa Cruz, Bolivia",
+            "latitud": -17.8146,
+            "longitud": -63.1561,
+            "referencia": "Frente al parque central, edificio azul",
+            "nombre_contacto": "Juan Pérez",
+            "telefono_contacto": "+591 70000000",
+            "instrucciones_entrega": "Entregar en horario de oficina (8:00 AM - 6:00 PM). Llamar antes de llegar.",
+            "products": [
+                {
+                    "order_product_index": 0,
+                    "cantidad": 60.00,
+                    "observaciones": "Cantidad para este destino - almacén principal"
+                },
+                {
+                    "order_product_index": 1,
+                    "cantidad": 30.00,
+                    "observaciones": "Producto para distribución local"
+                },
+                {
+                    "order_product_index": 2,
+                    "cantidad": 40.00,
+                    "observaciones": "Manejar con cuidado"
+                }
+            ]
+        },
+        {
+            "direccion": "Calle Segunda 456, La Paz, Bolivia",
+            "latitud": -16.5000,
+            "longitud": -68.1500,
+            "referencia": "Edificio azul, piso 3, oficina 301",
+            "nombre_contacto": "María González",
+            "telefono_contacto": "+591 70111111",
+            "instrucciones_entrega": "Llamar antes de entregar. Recepción en planta baja.",
+            "products": [
+                {
+                    "order_product_index": 0,
+                    "cantidad": 40.50,
+                    "observaciones": "Resto del producto 1 para este destino"
+                },
+                {
+                    "order_product_index": 1,
+                    "cantidad": 20.25,
+                    "observaciones": "Resto del producto 2"
+                },
+                {
+                    "order_product_index": 2,
+                    "cantidad": 35.75,
+                    "observaciones": "Resto del producto 3"
+                }
+            ]
+        },
+        {
+            "direccion": "Av. Tercera 789, Cochabamba, Bolivia",
+            "latitud": -17.3935,
+            "longitud": -66.1570,
+            "referencia": "Cerca del mercado central",
+            "nombre_contacto": "Carlos Rodríguez",
+            "telefono_contacto": "+591 70222222",
+            "instrucciones_entrega": "Entregar en la mañana preferentemente",
+            "products": [
+                {
+                    "order_product_index": 0,
+                    "cantidad": 0.0001,
+                    "observaciones": "Cantidad mínima para este destino"
+                },
+                {
+                    "order_product_index": 1,
+                    "cantidad": 0.0001,
+                    "observaciones": "Cantidad mínima para este destino"
+                },
+                {
+                    "order_product_index": 2,
+                    "cantidad": 0.0001,
+                    "observaciones": "Cantidad mínima para este destino"
+                }
+            ]
+        }
+    ]
+}
+

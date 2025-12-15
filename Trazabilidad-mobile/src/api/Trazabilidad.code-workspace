@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "Trazabilidad",
+			"path": "../../../../Trazabilidad"
+		},
+		{
+			"name": "app",
+			"path": "../../.."
+		}
+	],
+	"settings": {}
+}

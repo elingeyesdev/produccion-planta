@@ -1,0 +1,812 @@
+{
+	"info": {
+		"_postman_id": "trazabilidad-api-collection",
+		"name": "Trazabilidad API",
+		"description": "API collection for the Trazabilidad (Traceability) system",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://127.0.0.1:8001/api",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "",
+			"type": "string"
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Note: Register endpoint doesn't return a token",
+									"// You need to login after registration to get a token"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first_name\": \"Test\",\n    \"last_name\": \"User\",\n    \"username\": \"testuser\",\n    \"email\": \"test@example.com\",\n    \"password\": \"password123\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/register",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200) {",
+									"    var jsonData = pm.response.json();",
+									"    pm.collectionVariables.set(\"token\", jsonData.token);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"testuser\",\n    \"password\": \"password123\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Current User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/auth/me",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/auth/logout",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Unit of Measures",
+			"item": [
+				{
+					"name": "List All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/unit-of-measures",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"unit-of-measures"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Kilogram\",\n    \"abbreviation\": \"kg\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/unit-of-measures",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"unit-of-measures"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get One",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/unit-of-measures/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"unit-of-measures",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Kilogram Updated\",\n    \"abbreviation\": \"kg\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/unit-of-measures/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"unit-of-measures",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/unit-of-measures/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"unit-of-measures",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Customers",
+			"item": [
+				{
+					"name": "List All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/customers",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Customer Name\",\n    \"contact_info\": \"contact@example.com\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/customers",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get One",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/customers/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"customers",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Updated Customer Name\",\n    \"contact_info\": \"updated@example.com\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/customers/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"customers",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/customers/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"customers",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Production Batches",
+			"item": [
+				{
+					"name": "List All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/production-batches",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"production-batches"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"customer_order_id\": 1,\n    \"batch_number\": \"BATCH-001\",\n    \"quantity\": 100,\n    \"status_id\": 1\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/production-batches",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"production-batches"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get One",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/production-batches/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"production-batches",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"quantity\": 150,\n    \"status_id\": 2\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/production-batches/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"production-batches",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/production-batches/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"production-batches",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Process Transformation",
+			"item": [
+				{
+					"name": "Register Form",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"variables\": [\n        {\n            \"variable_id\": 1,\n            \"value\": 100\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/process-transformation/batch/1/machine/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"process-transformation",
+								"batch",
+								"1",
+								"machine",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Form",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/process-transformation/batch/1/machine/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"process-transformation",
+								"batch",
+								"1",
+								"machine",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Batch Process",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/process-transformation/batch/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"process-transformation",
+								"batch",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Process Evaluation",
+			"item": [
+				{
+					"name": "Finalize",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"evaluation_result\": \"approved\",\n    \"notes\": \"Quality check passed\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/process-evaluation/finalize/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"process-evaluation",
+								"finalize",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Log",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/process-evaluation/log/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"process-evaluation",
+								"log",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Raw Materials",
+			"item": [
+				{
+					"name": "List All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/raw-materials",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"raw-materials"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"raw_material_base_id\": 1,\n    \"supplier_id\": 1,\n    \"quantity\": 100,\n    \"unit_of_measure_id\": 1\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/raw-materials",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"raw-materials"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get One",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/raw-materials/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"raw-materials",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"quantity\": 150\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/raw-materials/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"raw-materials",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/raw-materials/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"raw-materials",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Storages",
+			"item": [
+				{
+					"name": "List All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/storages",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"storages"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get by Batch",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/storages/batch/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"storages",
+								"batch",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Material Movement Logs",
+			"item": [
+				{
+					"name": "List All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/material-movement-logs",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"material-movement-logs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get by Material",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/material-movement-logs/material/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"material-movement-logs",
+								"material",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
